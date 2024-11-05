@@ -6,26 +6,58 @@ public class EnemyMovement : MonoBehaviour
 {
     public Rigidbody2D TheRigidBody;
     public float MoveSpeed, Damage;
+    private GameObject player;
     private Transform target;
+
+    public float HitWaitTime = 0.5f;
+    private float HitCounter;
+
+    public float health = 10f;
 
     void Start()
     {
-        target = FindObjectOfType<PlayerMovementScript>().transform;
+        player = GameObject.FindGameObjectWithTag("Player");
 
-        MoveSpeed = Random.Range(0.7f, 1.4f);
+        if (player != null)
+        {
+            target = player.GetComponent<Transform>();
+        }
+
+        MoveSpeed = Random.Range(MoveSpeed * 0.8f,MoveSpeed * 1.2f);
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         TheRigidBody.velocity = (target.position - transform.position).normalized * MoveSpeed;
+
+        if(HitCounter > 0)
+        {
+            HitCounter -= Time.deltaTime;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (PlayerHealth.instance.tag == "Player")
+        var player = collision.gameObject.GetComponent<PlayerHealth>();
+
+        if (player)
         {
-            PlayerHealth.instance.TakeDamage(Damage);
+            player.TakeDamage(Damage);
+
+            HitCounter = HitWaitTime;
         }
     }
+
+    public void TakeDamage(float damageToTake)
+    {
+        health -= damageToTake;
+
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+        
+        
 }
 
