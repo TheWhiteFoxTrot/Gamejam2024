@@ -5,8 +5,6 @@ using UnityEngine.UI; // Import this for Image
 
 public class Pause_Menu : MonoBehaviour
 {
-    PlayerMovementScript Pm_Script; // Assuming this is used elsewhere
-
     [SerializeField] public Image ip;
 
     private bool stop_Game_input;
@@ -17,8 +15,12 @@ public class Pause_Menu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (ip == null)
+        {
+            Debug.LogError("ip is not assigned in the Inspector");
+        }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -43,16 +45,15 @@ public class Pause_Menu : MonoBehaviour
             float time = 0f;
             while (time < slow_Time)
             {
-                time += Time.unscaledDeltaTime;
-                Color img_Color = ip.color;
-                img_Color.a = Mathf.Lerp(0f, 1f, time / slow_Time);
-                ip.color = img_Color;
-
+                time += Time.fixedDeltaTime;
                 Time.timeScale = Mathf.Lerp(1f, 0f, time / slow_Time);
-
                 yield return null;
             }
-            Time.timeScale = 0f; // Ensure the time scale is fully stopped
+            Time.timeScale = 0f;
+            Color img_Color = ip.color; // This line can throw an error if ip is null
+            img_Color.a = 10;
+            ip.color = img_Color;
         }
     }
+
 }
