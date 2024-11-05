@@ -22,9 +22,16 @@ public class PlayerHealth : MonoBehaviour
         CurrentHealth = MaxHealth;
     }
 
-    private void Update()
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        Debug.Log(collision.collider.name);
+
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            TakeDamage(10);
+            Debug.Log(collision.collider.name);
+        }
     }
 
     public void TakeDamage(float damage)
