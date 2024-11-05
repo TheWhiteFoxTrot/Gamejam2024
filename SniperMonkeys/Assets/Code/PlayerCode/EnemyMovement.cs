@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
-        target = FindObjectOfType<Movement>().transform;
+        target = FindObjectOfType<PlayerMovementScript>().transform;
 
         MoveSpeed = Random.Range(0.7f, 1.4f);
     }
