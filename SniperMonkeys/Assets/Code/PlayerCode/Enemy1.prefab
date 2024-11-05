@@ -102,6 +102,8 @@ MonoBehaviour:
   TheRigidBody: {fileID: 5801881324247431669}
   MoveSpeed: 3
   Damage: 0
+  HitWaitTime: 0.5
+  health: 10
 --- !u!50 &5801881324247431669
 Rigidbody2D:
   serializedVersion: 4
@@ -128,7 +130,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1125709108320439249
 BoxCollider2D:
   m_ObjectHideFlags: 0
