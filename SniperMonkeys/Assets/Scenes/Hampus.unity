@@ -532,7 +532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1252728562}
   - component: {fileID: 1252728561}
-  - component: {fileID: 1252728560}
+  - component: {fileID: 1252728566}
   - component: {fileID: 1252728563}
   - component: {fileID: 1252728565}
   - component: {fileID: 1252728564}
@@ -543,20 +543,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1252728560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252728559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a845076c0fb8cc84e8037258c5fc97e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 9
-  rb2d: {fileID: 1252728563}
 --- !u!212 &1252728561
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -713,6 +699,21 @@ MonoBehaviour:
   CurrentHealth: 100
   MaxHealth: 100
   HealthSlider: {fileID: 455773886}
+--- !u!114 &1252728566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252728559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5b5a0eaa255a54391d39db67975971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkingSpeed: 10
+  jumpingForce: 0
+  swayMovement: 7
 --- !u!1 &1466181106
 GameObject:
   m_ObjectHideFlags: 0
