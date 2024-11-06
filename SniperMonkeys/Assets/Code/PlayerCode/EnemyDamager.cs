@@ -5,9 +5,13 @@ using UnityEngine;
 public class EnemyDamager : MonoBehaviour
 {
     public float DamageAmount;
+    
     public float LifeTime, GrowSpeed = 4f;
     private Vector3 TargetSize;
+    
     public bool DestroyParent;
+    
+    public bool ShouldKnockBack;
 
 
     void Start()
@@ -43,7 +47,7 @@ public class EnemyDamager : MonoBehaviour
     {
         if(collision.tag == "Enemy")
         {
-            collision.GetComponent<EnemyMovement>().TakeDamage(DamageAmount);
+            collision.GetComponent<EnemyMovement>().TakeDamage(DamageAmount, ShouldKnockBack);
         }
     }
 }

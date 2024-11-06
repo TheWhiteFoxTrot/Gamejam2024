@@ -14,6 +14,9 @@ public class EnemyMovement : MonoBehaviour
 
     public float health = 10f;
 
+    public float KnockBackTime = 0.5f;
+    private float KnockBackCounter;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -24,6 +27,24 @@ public class EnemyMovement : MonoBehaviour
         }
 
         MoveSpeed = Random.Range(MoveSpeed * 0.8f,MoveSpeed * 1.2f);
+    }
+
+    private void Update()
+    {
+        if(KnockBackCounter > 0)
+        {
+            KnockBackCounter -= Time.deltaTime;
+
+            if(MoveSpeed > 0)
+            {
+                MoveSpeed = -MoveSpeed * 2f;
+            }
+
+            if(KnockBackCounter <= 0)
+            {
+                MoveSpeed = Mathf.Abs(MoveSpeed * 0.5f);
+            }
+        }
     }
 
     void FixedUpdate()
@@ -58,6 +79,17 @@ public class EnemyMovement : MonoBehaviour
         }
 
         DamageNumberController.instance.SpawnDamage(damageToTake, transform.position);
-    }   
+    }
+
+    public void TakeDamage(float DamageToTake, bool ShouldKnockBack)
+    {
+        TakeDamage(DamageToTake);
+
+        if(ShouldKnockBack)
+        {
+            KnockBackCounter = KnockBackTime;
+        }
+    }
+    
 }
 
