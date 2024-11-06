@@ -316,13 +316,13 @@ MonoBehaviour:
   - EnemyToSpawn: {fileID: 5445748982413757329, guid: cd6e00df26337a446acc35fc49e9571e, type: 3}
     WaveLength: 25
     TimeBetweenSpawns: 1
-  - EnemyToSpawn: {fileID: 5445748982413757329, guid: cd6e00df26337a446acc35fc49e9571e, type: 3}
+  - EnemyToSpawn: {fileID: 2855774749693348510, guid: f45a6dd6ff7b77a43a5289bd06107d76, type: 3}
     WaveLength: 30
     TimeBetweenSpawns: 1
   - EnemyToSpawn: {fileID: 5445748982413757329, guid: cd6e00df26337a446acc35fc49e9571e, type: 3}
     WaveLength: 35
     TimeBetweenSpawns: 0.5
-  - EnemyToSpawn: {fileID: 5445748982413757329, guid: cd6e00df26337a446acc35fc49e9571e, type: 3}
+  - EnemyToSpawn: {fileID: 2855774749693348510, guid: f45a6dd6ff7b77a43a5289bd06107d76, type: 3}
     WaveLength: 40
     TimeBetweenSpawns: 0.5
 --- !u!1 &394112967
@@ -1405,6 +1405,8 @@ GameObject:
   - component: {fileID: 1252728563}
   - component: {fileID: 1252728565}
   - component: {fileID: 1252728564}
+  - component: {fileID: 1252728568}
+  - component: {fileID: 1252728567}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1584,6 +1586,40 @@ MonoBehaviour:
   walkingSpeed: 10
   jumpingForce: 0
   swayMovement: 7
+--- !u!114 &1252728567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252728559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b1e26bf91eeac4c840e49f457b87c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentExperience: 0
+  experienceToNextLevel: 100
+  level: 1
+  experienceSlider: {fileID: 0}
+  experienceText: {fileID: 0}
+  levelText: {fileID: 0}
+  upgradeScreenManager: {fileID: 0}
+--- !u!114 &1252728568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252728559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 346cc2106ddec504d8364324fbbf9215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expValue: 0
+  attractionDistance: 5
+  attractionSpeed: 10
 --- !u!1 &1332061111
 GameObject:
   m_ObjectHideFlags: 0
