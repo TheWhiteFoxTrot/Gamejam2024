@@ -25,6 +25,10 @@ public class EnemySpawner : MonoBehaviour
 
     public List<WaveInfo> waves;
 
+    private int CurrentWave;
+
+    private float WaveCounter;
+
     void Start()
     {
         SpawnCounter = TimeToSpawn;
@@ -37,11 +41,14 @@ public class EnemySpawner : MonoBehaviour
         }
 
         DespawnDistance = Vector3.Distance(transform.position, MaxSpawn.position) + 4f;
+
+        CurrentWave--;
+        GoToNextWave();
     }
 
     void Update()
     {
-        SpawnCounter -= Time.deltaTime;
+        /*SpawnCounter -= Time.deltaTime;
         if (SpawnCounter <= 0)
         {
             SpawnCounter = TimeToSpawn;
@@ -49,6 +56,28 @@ public class EnemySpawner : MonoBehaviour
             GameObject newEnemy = Instantiate(EnemyToSpawn, SelectSpawnPoint(), transform.rotation);
 
             SpawnedEnemies.Add(newEnemy);
+        }*/
+
+        if (PlayerHealth.instance.gameObject.activeSelf)
+        {
+            if(CurrentWave < waves.Count)
+            {
+                WaveCounter -= Time.deltaTime;
+                if(WaveCounter <= 0)
+                {
+                    GoToNextWave();
+                }
+
+                SpawnCounter -= Time.deltaTime;
+                if(SpawnCounter <= 0)
+                {
+                    SpawnCounter = waves[CurrentWave].TimeBetweenSpawns;
+
+                    GameObject newEnemy = Instantiate(waves[CurrentWave].EnemyToSpawn, SelectSpawnPoint(), Quaternion.identity);
+
+                    SpawnedEnemies.Add(newEnemy);
+                }
+            }
         }
 
         transform.position = target.position;
@@ -121,6 +150,19 @@ public class EnemySpawner : MonoBehaviour
         }
 
         return SpawnPoint;
+    }
+
+    public void GoToNextWave()
+    {
+        CurrentWave++;
+
+        if(CurrentWave >= waves.Count)
+        {
+            CurrentWave = waves.Count - 1;
+        }
+
+        WaveCounter = waves[CurrentWave].WaveLength;
+        SpawnCounter = waves[CurrentWave].TimeBetweenSpawns;
     }
 }
 

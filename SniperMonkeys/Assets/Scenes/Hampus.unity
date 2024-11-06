@@ -305,7 +305,7 @@ MonoBehaviour:
   TimeToSpawn: 2
   MinSpawn: {fileID: 1332061112}
   MaxSpawn: {fileID: 791447859}
-  CheckPerFrame: 0
+  CheckPerFrame: 10
   waves:
   - EnemyToSpawn: {fileID: 5445748982413757329, guid: cd6e00df26337a446acc35fc49e9571e, type: 3}
     WaveLength: 15
