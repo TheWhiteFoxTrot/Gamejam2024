@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TheRigidBody: {fileID: 8415493014163732451}
   MoveSpeed: 2
-  Damage: 0
+  Damage: 10
   HitWaitTime: 0.5
   health: 10
   KnockBackTime: 0.5
