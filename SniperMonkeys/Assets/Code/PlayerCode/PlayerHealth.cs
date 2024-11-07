@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth instance;
+
     public float CurrentHealth, MaxHealth;
     [HideInInspector] public bool player_Hit_Sound;
     [HideInInspector] public bool player_Death_Sound;
@@ -14,21 +15,30 @@ public class PlayerHealth : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Debug.LogWarning("Multiple PlayerHealth instances detected. Destroying duplicate.");
+            Destroy(gameObject);
+            return;
+        }
 
         HealthSlider.maxValue = MaxHealth;
-        HealthSlider.value = CurrentHealth;
+        HealthSlider.value = MaxHealth;
     }
 
     void Start()
     {
         CurrentHealth = MaxHealth;
+        HealthSlider.value = CurrentHealth; // Ensure health slider matches initial health
     }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.collider.name);
+        Debug.Log("Collision with: " + collision.collider.name);
 
         if (collision.collider.CompareTag("Enemy"))
         {
@@ -40,14 +50,17 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
+        HealthSlider.value = CurrentHealth;
+
         if (CurrentHealth <= 0)
         {
             player_Death_Sound = true;
-            gameObject.SetActive(false);
+            gameObject.SetActive(false); // Disable GameObject on death
+            Debug.Log("Player has died.");
         }
         else
+        {
             player_Hit_Sound = true;
-
-        HealthSlider.value = CurrentHealth;
+        }
     }
 }

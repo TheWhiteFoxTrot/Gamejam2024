@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void AWAK()
     {
         gameOverCanvas.SetActive(false); // Hide Game Over screen initially
     }
@@ -75,6 +75,6 @@ public class GameManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu"); // Load the main menu scene
+        SceneManager.LoadScene(0); // Load the main menu scene
     }
 }

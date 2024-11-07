@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 63596748a1fcfc540b297ea944944cda
   - enabled: 1
-    path: Assets/Scenes/Hampus.unity
-    guid: c55a6dd881cf6784f8578ae4fc482f9c
+    path: Assets/Scenes/MainWolrd.unity
+    guid: 159b8dcf1cd8b9f4fb014b7163d2164e
   m_configObjects: {}

@@ -8,25 +8,26 @@ public class UpgradeScreenManager : MonoBehaviour
     public Button increaseDamageButton; // Button for Damage increase
     public Button increaseSpeedButton; // Button for Speed increase
 
-    private PlayerHealth playerHealth; // Reference to PlayerHealth script
+    [SerializeField] private PlayerHealth playerHealth; // Reference to PlayerHealth script
     private PlayerMovementScript playerMovement; // Reference to PlayerMovementScript
-    private EnemyDamager enemyDamager; // Reference to the EnemyDamager or attack damage source
+    [SerializeField] public EnemyDamager enemyDamager; // Reference to the EnemyDamager or attack damage source
     private bool isGamePaused = false; // Flag to check if the game is paused
 
-    void Start()
+    void Awake()
     {
         // Ensure the upgrade panel is hidden at the start
         upgradePanel.SetActive(false);
 
         // Add listeners to upgrade the player stats when any button is clicked
         increaseHPButton.onClick.AddListener(IncreaseHP);
-        increaseDamageButton.onClick.AddListener(IncreaseDamage); 
+        increaseDamageButton.onClick.AddListener(Dammige); 
         increaseSpeedButton.onClick.AddListener(IncreaseSpeed);
+
+        increaseDamageButton.onClick.AddListener(() => Debug.Log("Button Pressed"));
 
         // Get references to the PlayerHealth, PlayerMovementScript, and EnemyDamager components
         playerHealth = FindObjectOfType<PlayerHealth>();
         playerMovement = FindObjectOfType<PlayerMovementScript>();
-        enemyDamager = FindObjectOfType<EnemyDamager>(); // Assuming enemyDamager is the attack source
     }
 
     // Increase Player HP
@@ -43,16 +44,27 @@ public class UpgradeScreenManager : MonoBehaviour
         }
     }
 
+    private void Dammige()
+    {
+        enemyDamager.DamageAmount += 1f;
+        ResumeGame();
+        Debug.Log("nigga");
+    }
+
     // Increase Player Damage (if you have damage in your system)
     private void IncreaseDamage()
     {
         if (enemyDamager != null)
         {
-            enemyDamager.DamageAmount += 1f; // Increase attack damage by 5 (example)
+            enemyDamager.DamageAmount += 1f;
             Debug.Log("Player Damage increased: " + enemyDamager.DamageAmount);
-            ResumeGame();
+        }
+        else
+        {
+            Debug.LogError("IncreaseDamage failed - EnemyDamager is null.");
         }
     }
+
 
     // Increase Player Speed
     private void IncreaseSpeed()

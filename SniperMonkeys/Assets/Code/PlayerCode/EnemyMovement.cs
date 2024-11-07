@@ -17,6 +17,10 @@ public class EnemyMovement : MonoBehaviour
     public float KnockBackTime = 0.5f;
     private float KnockBackCounter;
 
+    public bool Emnullshiting; // attacking
+    public bool PissingSKibidy; // Getting hit
+    
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -72,8 +76,9 @@ public class EnemyMovement : MonoBehaviour
     public void TakeDamage(float damageToTake)
     {
         health -= damageToTake;
+        PissingSKibidy = true;
 
-        if(health <= 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
