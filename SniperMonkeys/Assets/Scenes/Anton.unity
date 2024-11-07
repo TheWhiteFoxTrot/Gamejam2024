@@ -788,6 +788,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentHealth: 100
   MaxHealth: 100
+  player_Hit_Sound: 0
+  player_Death_Sound: 0
   HealthSlider: {fileID: 1263455485}
 --- !u!50 &438123409
 Rigidbody2D:
@@ -1704,7 +1706,7 @@ GameObject:
   - component: {fileID: 572192691}
   - component: {fileID: 572192694}
   - component: {fileID: 572192693}
-  - component: {fileID: 572192692}
+  - component: {fileID: 572192696}
   m_Layer: 0
   m_Name: LargeSword
   m_TagString: Untagged
@@ -1727,23 +1729,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2080188539}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!114 &572192692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572192690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515ccc8b68450d04cb949894c0e30385, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DamageAmount: 2
-  LifeTime: 3.5
-  GrowSpeed: 4
-  DestroyParent: 1
-  ShouldKnockBack: 1
 --- !u!61 &572192693
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1841,6 +1826,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &572192696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572192690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515ccc8b68450d04cb949894c0e30385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageAmount: 0
+  LifeTime: 0
+  GrowSpeed: 4
+  DestroyParent: 1
+  ShouldKnockBack: 1
 --- !u!1 &581143423
 GameObject:
   m_ObjectHideFlags: 0
@@ -4933,7 +4935,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1377933846
 RectTransform:
