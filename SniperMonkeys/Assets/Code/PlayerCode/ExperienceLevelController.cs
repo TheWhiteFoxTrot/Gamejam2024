@@ -7,8 +7,8 @@ public class ExperienceLevelController : MonoBehaviour
 
     [Header("Experience Settings")]
     public int currentExperience = 0; // Current experience points
-    public int experienceToNextLevel = 100; // Experience required for the next level
-    public int level = 1; // Current player level
+    public int experienceToNextLevel = 2; // Experience required for the next level
+    public int level = 99; // Current player level
 
     [Header("UI Elements")]
     public Slider experienceSlider; // Slider to represent experience visually
