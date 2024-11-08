@@ -48,28 +48,18 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        /*SpawnCounter -= Time.deltaTime;
-        if (SpawnCounter <= 0)
-        {
-            SpawnCounter = TimeToSpawn;
-
-            GameObject newEnemy = Instantiate(EnemyToSpawn, SelectSpawnPoint(), transform.rotation);
-
-            SpawnedEnemies.Add(newEnemy);
-        }*/
-
         if (PlayerHealth.instance.gameObject.activeSelf)
         {
-            if(CurrentWave < waves.Count)
+            if (CurrentWave < waves.Count)
             {
                 WaveCounter -= Time.deltaTime;
-                if(WaveCounter <= 0)
+                if (WaveCounter <= 0)
                 {
                     GoToNextWave();
                 }
 
                 SpawnCounter -= Time.deltaTime;
-                if(SpawnCounter <= 0)
+                if (SpawnCounter <= 0)
                 {
                     SpawnCounter = waves[CurrentWave].TimeBetweenSpawns;
 
@@ -84,35 +74,32 @@ public class EnemySpawner : MonoBehaviour
 
         int checkTarget = EnemyToCheck + CheckPerFrame;
 
-        while (EnemyToCheck < checkTarget)
+        while (EnemyToCheck < checkTarget && EnemyToCheck < SpawnedEnemies.Count)
         {
-            if (EnemyToCheck < SpawnedEnemies.Count)
+            if (SpawnedEnemies[EnemyToCheck] != null)
             {
-                if (SpawnedEnemies[EnemyToCheck] != null)
+                if (Vector3.Distance(transform.position, SpawnedEnemies[EnemyToCheck].transform.position) > DespawnDistance)
                 {
-                    if (Vector3.Distance(transform.position, SpawnedEnemies[EnemyToCheck].transform.position) > DespawnDistance)
-                    {
-                        Destroy(SpawnedEnemies[EnemyToCheck]);
-
-                        SpawnedEnemies.RemoveAt(EnemyToCheck);
-                        checkTarget--;
-                    }
-                    else
-                    {
-                        EnemyToCheck--;
-                    }
+                    Destroy(SpawnedEnemies[EnemyToCheck]);
+                    SpawnedEnemies.RemoveAt(EnemyToCheck);
+                    checkTarget--;
                 }
                 else
                 {
-                    SpawnedEnemies.RemoveAt(EnemyToCheck);
-                    checkTarget--;
+                    EnemyToCheck++;
                 }
             }
             else
             {
-                EnemyToCheck = 0;
-                checkTarget = 0;
+                SpawnedEnemies.RemoveAt(EnemyToCheck);
+                checkTarget--;
             }
+        }
+
+        // Reset the index to 0 if it exceeds the count, to avoid out-of-bounds access
+        if (EnemyToCheck >= SpawnedEnemies.Count)
+        {
+            EnemyToCheck = 0;
         }
     }
 
