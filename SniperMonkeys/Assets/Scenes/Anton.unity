@@ -1280,7 +1280,7 @@ MonoBehaviour:
   increaseDamageButton: {fileID: 172347659}
   increaseSpeedButton: {fileID: 1993462662}
   playerHealth: {fileID: 0}
-  enemyDamager: {fileID: 382938684}
+  enemyDamager: {fileID: 0}
 --- !u!4 &496307340
 Transform:
   m_ObjectHideFlags: 0
